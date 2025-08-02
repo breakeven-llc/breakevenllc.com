@@ -1,4 +1,4 @@
-# Bodal.dev
+# Breakeven LLC
 
 Personal website and blog built with Next.js and deployed to GitHub Pages.
 
@@ -22,8 +22,8 @@ Personal website and blog built with Next.js and deployed to GitHub Pages.
 
 ```bash
 # Clone the repository
-git clone https://github.com/jensbodal/bodal.dev.git
-cd bodal.dev
+git clone https://github.com/jensbodal/breakevenllc.com.git
+cd breakevenllc.com
 
 # Install dependencies
 npm install
@@ -50,7 +50,7 @@ The development server runs at [http://localhost:3000](http://localhost:3000)
 ## Project Structure
 
 ```
-bodal.dev/
+breakevenllc.com/
 ├── app/              # Next.js App Router pages
 │   ├── about/        # About page
 │   ├── blog/         # Blog listing page

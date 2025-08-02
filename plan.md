@@ -8,10 +8,10 @@ human_date: Aug 2 10:57:38
 
 You are an agentic developer and are in the root /Users/jensbodal/github folder where there are various agentic and non-agentic packages.
 
-Right now we are mainly working in /Users/jensbodal/github/bodal.dev but also have access to /Users/jensbodal/github/vibe-cli and
+Right now we are mainly working in /Users/jensbodal/github/breakevenllc.com but also have access to /Users/jensbodal/github/vibe-cli and
 also have /Users/jensbodal/github/shell-settings
 
-I am not quite sure the state those packages are in but they cover concepts we want to apply to bodal.dev, so please review those packages
+I am not quite sure the state those packages are in but they cover concepts we want to apply to breakevenllc.com, so please review those packages
 and their structure and incorporate that into the prompt below for how to set up a local package to deploy a SSG site with nextjs
 deployed to github pages with github actions.
 
@@ -29,7 +29,7 @@ Copy-paste agent/system prompt (Next.js SSG + GitHub Pages)
 
 > Role: Repo-aware coding agent
 
-> Repo: https://github.com/jensbodal/bodal.dev (local: /Users/jensbodal/github/bodal.dev)
+> Repo: https://github.com/jensbodal/breakevenllc.com (local: /Users/jensbodal/github/breakevenllc.com)
 
 > Goal: Implement a static Next.js site and GitHub Pages deploy, strictly following the conventions found in ./vibe-cli and ./shell-settings.
 
@@ -38,7 +38,7 @@ Objectives
 2. Sections: Home, About, Projects, Blog (MD/MDX), Contact.
 3. Content in content/ with frontmatter; support MDX if low-friction.
 4. Clean, accessible, fast theme; dark/light toggle; minimal client JS.
-5. Deploy via GitHub Pages with custom domain bodal.dev.
+5. Deploy via GitHub Pages with custom domain breakevenllc.com.
 
 Hard constraints (read before changes)
 - Read and summarize expectations from ./vibe-cli/** and ./shell-settings/**:
@@ -52,7 +52,7 @@ Deliverables
 - next.config.ts with output: 'export' and images.unoptimized = true (static images), and any needed options called out from discovery.
 - MD/MDX blog pipeline (sample posts with frontmatter).
 - Scripts wired to your existing vibe-cli / shell aliases.
-- public/CNAME set to bodal.dev (so it’s included in the export).
+- public/CNAME set to breakevenllc.com (so it’s included in the export).
 - .github/workflows/pages.yml that builds + exports to out/ and deploys to GitHub Pages.
 - README.md and CONTRIBUTING.md explaining local dev, build, deploy, content model, and how to work with the agentic workflow.
 
@@ -125,7 +125,7 @@ jobs:
 ```
 1.
    -
-   - Ensure public/CNAME = bodal.dev exists so Pages sets the custom domain automatically.
+   - Ensure public/CNAME = breakevenllc.com exists so Pages sets the custom domain automatically.
 2. Docs & checks
    - Update README.md with: prerequisites, local dev, build/export, deploy, content authoring, and how vibe-cliintegrates.
    - Add CONTRIBUTING.md explaining commit style, scripts, and agent workflow.
@@ -143,7 +143,7 @@ Output format
 
 One-liner kickoff
 
-> “Using the system prompt above, implement Next.js static export for bodal.dev, honoring ./vibe-cli and ./shell-settings. Start by summarizing those folders, then propose the site plan before scaffolding.”
+> “Using the system prompt above, implement Next.js static export for breakevenllc.com, honoring ./vibe-cli and ./shell-settings. Start by summarizing those folders, then propose the site plan before scaffolding.”
 
 ---
 

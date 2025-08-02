@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0011;
+  --background: #0f0f0f;
   --foreground: #ffffff;
-  --primary: #FF10F0;
-  --primary-hover: #FF10F0;
-  --border: #333;
-  --card-bg: #1a0033;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --border: #27272a;
+  --card-bg: #18181b;
   --max-width: 1200px;
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), "SF Mono", Consolas, "Liberation Mono", monospace;
@@ -22,11 +24,10 @@
 
   body {
     @apply text-white;
-    background: #0a0011;
+    background: var(--background);
     background-image: 
-      radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 119, 198, 0.3), transparent),
-      radial-gradient(ellipse 80% 80% at 80% 80%, rgba(255, 16, 240, 0.15), transparent),
-      radial-gradient(ellipse 80% 80% at 20% 80%, rgba(0, 240, 255, 0.15), transparent);
+      radial-gradient(ellipse 80% 80% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
+      radial-gradient(ellipse 80% 80% at 80% 80%, rgba(16, 185, 129, 0.1), transparent);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -38,34 +39,31 @@
   }
 
   a {
-    @apply text-neon-pink no-underline transition-all duration-300;
+    @apply text-primary no-underline transition-all duration-200;
   }
 
   a:hover {
-    @apply text-neon-blue;
-    text-shadow: 0 0 10px currentColor;
+    @apply text-primary-hover;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply mb-4 leading-tight font-bold;
+    @apply mb-4 leading-tight font-semibold;
   }
 
   h1 { 
     @apply text-5xl md:text-6xl;
-    background: linear-gradient(135deg, #FF10F0 0%, #00F0FF 50%, #0FFF50 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradient 8s ease infinite;
-    background-size: 200% 200%;
   }
   
   h2 { 
-    @apply text-3xl md:text-4xl text-neon-blue;
+    @apply text-3xl md:text-4xl text-gray-100;
   }
   
   h3 { 
-    @apply text-2xl md:text-3xl text-neon-green;
+    @apply text-2xl md:text-3xl text-gray-200;
   }
 
   p {
@@ -73,7 +71,7 @@
   }
 
   ::selection {
-    background: rgba(255, 16, 240, 0.5);
+    background: rgba(59, 130, 246, 0.3);
     color: white;
   }
 }
@@ -83,45 +81,51 @@
     @apply max-w-7xl mx-auto px-4;
   }
 
-  .neon-border {
-    @apply relative;
-    &::before {
-      content: '';
-      @apply absolute inset-0 rounded-lg;
-      padding: 2px;
-      background: linear-gradient(135deg, #FF10F0, #00F0FF, #0FFF50, #9D00FF);
-      -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: gradient 8s ease infinite;
-      background-size: 200% 200%;
-    }
+  .text-primary {
+    @apply text-blue-500;
   }
 
-  .glow-text {
-    @apply animate-glow;
+  .text-accent {
+    @apply text-emerald-500;
   }
 
-  .neon-button {
-    @apply px-6 py-3 rounded-lg font-bold uppercase tracking-wider transition-all duration-300;
-    @apply bg-transparent border-2 border-neon-pink text-neon-pink;
-    @apply hover:bg-neon-pink hover:text-black hover:shadow-neon-pink;
-    @apply active:scale-95;
+  .text-primary-hover {
+    @apply text-blue-600;
   }
 
-  .neon-card {
-    @apply bg-black/50 backdrop-blur-sm rounded-lg p-6 border border-purple-900/50;
-    @apply hover:border-neon-purple/50 transition-all duration-300;
-    @apply hover:shadow-neon-purple;
+  .bg-primary {
+    @apply bg-blue-500;
+  }
+
+  .bg-primary-hover {
+    @apply bg-blue-600;
+  }
+
+  .bg-card-bg {
+    @apply bg-zinc-900;
+  }
+
+  .border-subtle {
+    @apply border border-gray-800;
+  }
+
+  .professional-button {
+    @apply px-6 py-3 rounded-md font-medium transition-all duration-200;
+    @apply bg-primary text-white;
+    @apply hover:bg-primary-hover;
+    @apply active:scale-[0.98];
+  }
+
+  .professional-card {
+    @apply bg-card-bg rounded-lg p-6 border border-gray-800;
+    @apply hover:border-gray-700 transition-all duration-200;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   }
 
   /* Header */
   header {
-    @apply border-b border-purple-900/30 py-4 sticky top-0 z-10;
-    @apply bg-black/80 backdrop-blur-lg;
-    box-shadow: 0 4px 30px rgba(255, 16, 240, 0.1);
+    @apply border-b border-gray-800 py-4 sticky top-0 z-10;
+    @apply bg-black/90 backdrop-blur-lg;
   }
 
   header nav {
@@ -129,12 +133,8 @@
   }
 
   header .logo {
-    @apply text-2xl font-bold;
-    background: linear-gradient(135deg, #FF10F0 0%, #00F0FF 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    @apply hover:animate-pulse-neon cursor-pointer;
+    @apply text-2xl font-semibold;
+    @apply text-gray-100;
   }
 
   header ul {
@@ -142,8 +142,7 @@
   }
 
   header a {
-    @apply text-gray-300 hover:text-neon-pink transition-all duration-300;
-    @apply hover:drop-shadow-[0_0_8px_rgba(255,16,240,0.8)];
+    @apply text-gray-300 hover:text-white transition-all duration-200;
   }
 
   header a:hover {
@@ -157,40 +156,36 @@
 
   /* Footer */
   footer {
-    @apply border-t border-purple-900/30 py-8 text-center text-gray-400;
-    background: linear-gradient(to top, rgba(255, 16, 240, 0.05), transparent);
+    @apply border-t border-gray-800 py-8 text-center text-gray-400;
   }
 
   /* Blog list */
   .post-list {
-    @apply list-none space-y-8;
+    @apply list-none space-y-6;
   }
 
   .post-list li {
-    @apply neon-card hover:translate-x-2;
+    @apply professional-card hover:translate-x-1;
   }
 
   .post-list h2 {
-    @apply text-2xl mb-2 text-neon-blue;
+    @apply text-2xl mb-2 text-gray-100;
   }
 
   .post-list time {
-    @apply text-gray-400 text-sm;
+    @apply text-gray-500 text-sm;
   }
 
   /* Terminal styles */
   .terminal-container {
-    @apply rounded-lg overflow-hidden shadow-2xl;
-    @apply border border-neon-green/30;
-    box-shadow: 
-      0 0 20px rgba(15, 255, 80, 0.3),
-      0 0 40px rgba(15, 255, 80, 0.1),
-      inset 0 0 20px rgba(15, 255, 80, 0.05);
+    @apply rounded-lg overflow-hidden shadow-xl;
+    @apply border border-gray-800;
+    background: #1a1a1a;
   }
 
   .terminal-header {
-    @apply bg-black/80 px-4 py-2 flex items-center gap-2;
-    @apply border-b border-neon-green/30;
+    @apply bg-gray-900 px-4 py-2 flex items-center gap-2;
+    @apply border-b border-gray-800;
   }
 
   .terminal-button {
@@ -208,6 +203,20 @@
   .terminal-button.maximize {
     @apply bg-green-500 hover:bg-green-400;
   }
+
+  /* Remove neon animations for professional look */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
 }
 
 @layer utilities {
@@ -222,30 +231,12 @@
     }
   }
 
-  /* Animations */
-  @keyframes gradient {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
+  /* Shadow utilities */
+  .shadow-primary {
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.2);
   }
 
-  @keyframes glow {
-    from {
-      text-shadow: 
-        0 0 10px #FF10F0, 
-        0 0 20px #FF10F0, 
-        0 0 30px #FF10F0, 
-        0 0 40px #FF10F0;
-    }
-    to {
-      text-shadow: 
-        0 0 20px #FF10F0, 
-        0 0 30px #FF10F0, 
-        0 0 40px #FF10F0, 
-        0 0 50px #FF10F0;
-    }
+  .shadow-accent {
+    box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.2);
   }
 }

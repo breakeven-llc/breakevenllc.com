@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bodal.dev",
-  description: "Personal website and blog",
+  title: "Breakeven LLC",
+  description: "Professional solutions for modern business challenges",
 };
 
 export default function RootLayout({
@@ -27,12 +27,12 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <header>
           <nav className="container">
-            <a href="/" className="logo">Bodal.dev</a>
+            <a href="/" className="logo">Breakeven LLC</a>
           </nav>
         </header>
         {children}
         <footer className="container">
-          <p>&copy; {new Date().getFullYear()} Bodal.dev. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Breakeven LLC. All rights reserved.</p>
         </footer>
       </body>
     </html>

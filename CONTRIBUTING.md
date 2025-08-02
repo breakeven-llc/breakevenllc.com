@@ -1,4 +1,4 @@
-# Contributing to Bodal.dev
+# Contributing to Breakeven LLC
 
 Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to this project.
 
@@ -18,8 +18,8 @@ When using AI-assisted development tools, use these prefixes:
 1. Fork the repository
 2. Clone your fork:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/bodal.dev.git
-   cd bodal.dev
+   git clone https://github.com/YOUR_USERNAME/breakevenllc.com.git
+   cd breakevenllc.com
    ```
 3. Install dependencies:
    ```bash

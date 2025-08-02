@@ -3,7 +3,7 @@
 const { execSync } = require('child_process');
 const http = require('http');
 
-console.log('🧪 Testing bodal.dev site...\n');
+console.log('🧪 Testing breakevenllc.com site...\n');
 
 // Test 1: Check dependencies
 console.log('1️⃣ Checking dependencies...');

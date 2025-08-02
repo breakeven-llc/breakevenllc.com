@@ -23,27 +23,27 @@ export default function TerminalComponent() {
 
       const term = new Terminal({
       theme: {
-        background: '#1a1a1a',
-        foreground: '#e4e4e7',
-        cursor: '#3b82f6',
-        cursorAccent: '#1a1a1a',
-        selectionBackground: 'rgba(59, 130, 246, 0.3)',
-        black: '#000000',
-        red: '#ef4444',
-        green: '#10b981',
-        yellow: '#f59e0b',
-        blue: '#3b82f6',
-        magenta: '#8b5cf6',
-        cyan: '#06b6d4',
-        white: '#e4e4e7',
-        brightBlack: '#6b7280',
-        brightRed: '#f87171',
-        brightGreen: '#34d399',
-        brightYellow: '#fbbf24',
-        brightBlue: '#60a5fa',
-        brightMagenta: '#a78bfa',
-        brightCyan: '#22d3ee',
-        brightWhite: '#f3f4f6'
+        background: '#0a0e27',
+        foreground: '#f8f8f2',
+        cursor: '#ff79c6',
+        cursorAccent: '#0a0e27',
+        selectionBackground: 'rgba(255, 121, 198, 0.3)',
+        black: '#21222c',
+        red: '#ff5555',
+        green: '#50fa7b',
+        yellow: '#f1fa8c',
+        blue: '#bd93f9',
+        magenta: '#ff79c6',
+        cyan: '#8be9fd',
+        white: '#f8f8f2',
+        brightBlack: '#6272a4',
+        brightRed: '#ff6e6e',
+        brightGreen: '#69ff94',
+        brightYellow: '#ffffa5',
+        brightBlue: '#d6acff',
+        brightMagenta: '#ff92df',
+        brightCyan: '#a4ffff',
+        brightWhite: '#ffffff'
       },
       fontFamily: 'monospace',
       fontSize: 14,
@@ -86,7 +86,7 @@ export default function TerminalComponent() {
     term.writeln('');
     term.writeln('\x1b[90m────────────────────────────────────────────────────────────────────\x1b[0m');
     term.writeln('');
-    term.write('\x1b[1;36m$ \x1b[0m');
+    term.write('\x1b[1;35m$ \x1b[0m');
 
     // Focus immediately
     term.focus();
@@ -200,6 +200,339 @@ export default function TerminalComponent() {
           }
           break;
         
+        case 'ethan':
+          const parrotFrames = [
+            `                         .cccc;;cc;';.
+                      .;c;'         ,;:c:.
+                     .c:,           .;c'  .;.
+                    .cc,,,,,,,,,    'c;    .:c;
+                   .c;,,,,,,,,,,,.  lc.      .:c.
+                  .c:,,,,,,,,,,,,,. .cc.       ,c:
+                  :c',,,,,,,,,,;c,. 'lc,        ;c,
+                 .c:,,,,,,,,,,,,:c' .:c,        .c;
+                 ,c;,,,,,,,,,,,;c'  ;cl.         ;l'
+                 ;c:,,,,,,,,,,,l:   .c;           cc
+                .cc;,,,,,,,,,,::'    l:.          'c,
+                .c;,,,,,,,,;c:'     .c:,          .c;
+                :l:;';;,;',,;'      .c:,           :c.
+               .;cc;.                 .;c:.         .lc
+               ;cc;'                   'cc:.        .c:
+              .c:,,.                  .c:;;.        .cc
+              cc,;c::;               .lc,,:c.       .c;
+             :c,,,,,,;:.            .c:,,,,:c.       l;
+             c;,,,,,,,cc:.         'l;,,,,,,;l.      c:
+            .c,,,,,,,,,;c:'      .cc;,,,,,,,,:c     .c,
+            .l;,,,,,,,,,,;cc;''':cc:,,,,,,,,,;c'    cc.
+            .c;,,,,,,,,,,,,,;;cc;,,,,,,,,,,,,,l.   .c,
+             c;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;:    .c.
+             'l;,,,,,,,,,,,,,,,,,,,,,,,,,,,,;:.    c:
+              'c:;,,,,,,,,,,,,,,,,,,,,,,,;cc;.    .c,
+               .':cc:c;;,,,,,,,,,,,;;;c:;,.      .c:
+                  ....',;;;;;;;;,'',,.           ,l.
+                                                .:`,
+            `                         .cccc;;cc;';.
+                      .;c;'         ,;:c:.
+                     .c:,           .;c'  .;.
+                    .cc,,,,,,,,,    'c;    .:c;
+                   .c;,,,,,,,,,,,.  lc.      .:c.
+                  .c:,,,,,,,,,,,,,. .cc.       ,c:
+                  :c',,,,,,,,,,;c,. 'lc,        ;c,
+                 .c:,,,,,,,,,,,,:c' .:c,        .c;
+                 ,c;,,,,,,,,,,,;c'  ;cl.         ;l'
+                 ;c:,,,,,,,,,,,l:   .c;           cc
+                .cc;,,,,,,,,,,::'    l:.          'c,
+                .c;,,,,,,,,;c:'     .c:,          .c;
+                :l:;';;,;',,;'      .c:,           :c.
+               .;cc;.                 .;c:.         .lc
+               ;cc;'                   'cc:.        .c:
+              .c:,,.                  .c:;;.        .cc
+              cc,;c::;               .lc,,:c.       .c;
+             :c,,,,,,;:.            .c:,,,,:c.       l;
+             c;,,,,,,,cc:.         'l;,,,,,,;l.      c:
+            .c,,,,,,,,,;c:'      .cc;,,,,,,,,:c     .c,
+            .l;,,,,,,,,,,;cc;''':cc:,,,,,,,,,;c'    cc.
+            .c;,,,,,,,,,,,,,;;cc;,,,,,,,,,,,,,l.   .c,
+             c;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;:    .c.
+             'l;,,,,,,,,,,,,,,,,,,,,,,,,,,,,;:.    c:
+              'c:;,,,,,,,,,,,,,,,,,,,,,,,;cc;.    .c,
+               .':cc:c;;,,,,,,,,,,,;;;c:;,.      .c:
+                  ....',;;;;;;;;,'',,.           ,l.
+                                                .:`,
+            `                         .cccc;;cc;';.
+                      .;c;'         ';;:c;'
+                     .c:,              '    .,:.
+                    .cc,,,,,,,,,.   .;c.     ,c,
+                   .c;,,,,,,,,,,,. .cc'      .c:
+                  .c:,,,,,,,,,,,,;..lc'       .c;
+                  :c',,,,,,,,,,,;c'.cc,        ,c'
+                 .c:,,,,,,,,,,,,:c'.;lc.       .c;
+                 ,c;,,,,,,,,,,,;c' .;l:.       .;l.
+                 ;c:,,,,,,,,,,,l:   ,c;         :c.
+                .cc;,,,,,,,,,,::'   .c:.        'l;
+                .c;,,,,,,,,;c:'     .cc.        .c;
+                :l:;';;';'',;'       ;c,         :c.
+               .;cc;'                .;c:.       .lc
+               ;::;.                  .:cc'      .c:
+              .c:,                    .c:;;'     .cc
+              cc,,:c:,                :c;,:c.    .c;
+             :c,,,,,,::.             .c:,,,;c.    l;
+             c;,,,,,,;cc,           .l:,,,,,;l.   c:
+            .c,,,,,,,,,:c;.       .:c;,,,,,,,:c  .c,
+            .l;,,,,,,,,,,:cc:;,;:cc:,,,,,,,,,,c. cc.
+            .c;,,,,,,,,,,,,,'cc:;,,,,,,,,,,,,,l. c;
+             c;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,c .c'
+             'l;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,c' c:
+              'c:;,,,,,,,,,,,,,,,,,,,,,,,,;cc, .c,
+               .':cc::c;;,,,,,,,,,,;;;c:c;,.  .c:
+                  .....',;;;;;;;;,'',,..      ,l.
+                                             .:`,
+            `                         .cccc;;cc;';.
+                      .:c:'          ,;;;.
+                     .cc'             .  .';'
+                    .cc,,,,,,,,,,    :c.   'c,
+                   .c;,,,,,,,,,,,, .cc'     'c,
+                  .c:,,,,,,,,,,,,,'.lc'      .c:
+                  :c',,,,,,,,,,,,:;':c,       .c;
+                 .c:,,,,,,,,,,,,;l' ,cc.       ,c'
+                 ,c;,,,,,,,,,,,,cc. .cl,       .;c.
+                 ;c:,,,,,,,,,,,;l,   ;l;        ,c'
+                .cc;,,,,,,,,,,:c:.   'l:.       .c;
+                .c;,,,,,,,,;c:,.     .cc.       .c;
+                :l:;';;';'',:'        ;c,        :c.
+               .;cc;'                 .cc.       .cc
+               ;cc:.                   ;cc'      'c;
+              .c:,                     'c::'     .cc.
+              cc,,;::,                 'cc';c.    :c.
+             :c,,,,,;c,                'c;,,;c.   .c,
+             c;,,,,,,;c:.              c;,,,,:c.   c:
+            .c,,,,,,,,:c:'           .c:,,,,,,;l  .c;
+            .l;,,,,,,,,,;cc:;'.',;:cc;,,,,,,,,,c. :c.
+            .c;,,,,,,,,,,,,,;:cc::,,,,,,,,,,,,;l  c;
+             c;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,:; .c'
+             'l;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;c .c;
+              'c:;,,,,,,,,,,,,,,,,,,,,,,,,,;c:' c:.
+               .':cc:c:;;,,,,,,,,,,,;;;cc:;,.  c:.
+                  ....',;;;;;;;;;,'''...      ;l.
+                                             ,c.`,
+            `                         .cccc;;cc;';.
+                      ':c:.           ,;,.
+                     'c:.               .';.
+                    .cc,,,,,,,,,,.   :c.  .:,
+                   .c;,,,,,,,,,,,,  .cc.   'c,
+                  .c:,,,,,,,,,,,,,, 'lc'    'c,
+                  :c',,,,,,,,,,,,;c.':c,     ,c.
+                 .c:,,,,,,,,,,,,,:c,.,cc.    .c;
+                 ,c;,,,,,,,,,,,,,cc. .cl,    .:c.
+                 ;c:,,,,,,,,,,,,;l,   ;l;     ;l.
+                .cc;,,,,,,,,,,,;c:.   'l:.    'c;
+                .c;,,,,,,,,,;cc;.     .cc.    .c;
+                :l:;,.';'.',;l'        ;c,     :c.
+               .;cc:'                  .cc.    'cc
+               ;cc:.                    ;cc'   'c;
+              .c:,                      'c:::. .cc.
+              cc,';c:,                  .cc,:c  :c.
+             :c,,,,,:c.                 'c;,;c. .c,
+             c;,,,,,,:c,                c;,,,:c  c:
+            .c,,,,,,,,;c:.            .c:,,,,,c..c;
+            .l;,,,,,,,,,:cc:;'...,;ccc;,,,,,,,:c :c.
+            .c;,,,,,,,,,,,,,;cccc:;,,,,,,,,,,,;l c;
+             c;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;c.c'
+             'l;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,cc:;
+              'c:;,,,,,,,,,,,,,,,,,,,,,,,,,,:cc,c:.
+               .':ccc:c:;;,,,,,,,,,,;;;c:cc;,. c:.
+                  ....',;;;;;;;;;;,'',...      ;l.
+                                              ,c.`,
+            `                         .cccc;;cc;';.
+                       'cc,            ';.
+                      ,c;.               ':,
+                    .cc,,,,,,,,,,,.  .c:.  ;c.
+                   .c;,,,,,,,,,,,,,  'cc.   ;c.
+                  .c:,,,,,,,,,,,,,,, .lc'   .c:
+                  :c',,,,,,,,,,,,,;c.'cc,    .c;
+                 .c:,,,,,,,,,,,,,,:c;.;cc.    ;c.
+                 ,c;,,,,,,,,,,,,,,cc. .cl,    'c;
+                 ;c:,,,,,,,,,,,,,;l,   ;l;    .cc
+                .cc;,,,,,,,,,,,,;c:.   'l:.    :l.
+                .c;,,,,,,,,,,,cc:.     .cc.    ;c,
+                :cc;'..';,..,;l'        ;c,    ,c'
+               .:ccc'                   .cc.   'l;
+               ;c:;.                     ;cc'  .c;
+              .cc.                       'c::;..cc.
+              cl.',cc,                   .cc';c :c.
+             ;c,,,,,cc.                  'c;,:c..c,
+             c:,,,,,,cc.                 c;,,,c' c:
+            .c;,,,,,,,;c;.             .c:,,,,c,.c;
+            'l,,,,,,,,,,ccc;,....',;ccc;,,,,,,:c :c.
+            .c:,,,,,,,,,,,,,:cccccc:,,,,,,,,,,:c c;
+             c:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;c.c'
+             .l;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,:cc;
+              .cc;,,,,,,,,,,,,,,,,,,,,,,,,,,:cc;c:.
+                ':ccc::;;,,,,,,,,,,,,,;;::cc:,. c:.
+                  ...',;;;;;;;;;;;,'''....      ;l.
+                                               ,c.`,
+            `                         .cccc;;cc;';.
+                       .:c;.           .;'
+                      .cc'                ;c'
+                    .cc,,,,,,,,,,,,.  cc.  ;c.
+                   .c;,,,,,,,,,,,,,,  cc.   :c.
+                  .c:,,,,,,,,,,,,,,,, ,l:.  .c:
+                  :c',,,,,,,,,,,,,,:c''cc,   ;c,
+                 .c:,,,,,,,,,,,,,,,:c;.cc:.  .c;
+                 ,c;,,,,,,,,,,,,,,,cc' 'cl,  .cc
+                 ;c:,,,,,,,,,,,,,,;l,   :l;   ;l.
+                .cc;,,,,,,,,,,,,,;c:'   .l:.  'c;
+                .c;,,,,,,,,,,,;cc;.      cc.  .c;
+                :cc:,..',;'.';cl.        :c,   :c.
+               .:ccc.                    'cc.  'cc
+               :c::'                      ;cc. 'c;
+              'cc'                        .c::; cc.
+              cc..;cc,                     cc,c.:c'
+             ;c,,,,,:c'                   .cc,c'.c,
+             c:,,,,,,:c'                  :l,,c' c:
+            .c;,,,,,,,:c,                c:,,,c,.c;
+            'l,,,,,,,,,;cc:'......',;ccc:,,,,,cc :c.
+            .c:,,,,,,,,,,,;ccccccccc:;,,,,,,,,:c c;
+             c:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,:c.c'
+             .l;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,cc:;
+              .cc;,,,,,,,,,,,,,,,,,,,,,,,,,,;cc,c:.
+                ':cc:::;;,,,,,,,,,,,,;;:::cc:,. c:.
+                   ..',;;;;;;;;;;;;;,''...      ;l.
+                                               ,c.`,
+            `                         .cccc;;cc;';.
+                        ,cc.           .:,
+                       :c;.              .c;
+                    .cc,,,,,,,,,,,,.  :c.  :c.
+                   .c;,,,,,,,,,,,,,, .cc.   c:.
+                  .c:,,,,,,,,,,,,,,,' :l:.  'c,
+                  :c',,,,,,,,,,,,,,c:.,cc,   ;c.
+                 .c:,,,,,,,,,,,,,,,;c;.cc:.  .c:
+                 ,c;,,,,,,,,,,,,,,,:c' 'cl,   cc
+                 ;c:,,,,,,,,,,,,,,,cc.  :l;   ;l.
+                .cc;,,,,,,,,,,,,,,;l,   .l:.  'c;
+                .c;,,,,,,,,,,,,;cc:.     cc.  .c;
+                :cc:,..';,..';cl:.       :c,   :c.
+               .:ccc'                    'cc.  .cc
+               :c::,                      ;cc. .c;
+              'cc'                        .c::; cc.
+              cc..,cc'                     cc'c.:c'
+             ;c,,,,,cc.                    cccc'.c,
+             c:,,,,,,cc.                  ,l;,c, c:
+            .c;,,,,,,,cc,                c:,,,c;.c;
+            'l,,,,,,,,,:cc;'.......',;cc:,,,,,cc :c.
+            .cc,,,,,,,,,,,:ccccccccc:;,,,,,,,,:c.c;
+             c:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,cc c'
+             .l:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;l:c;
+              .cc;,,,,,,,,,,,,,,,,,,,,,,,,,;cc;,c.
+                ':cc:::;;,,,,,,,,,,,;;;::cc:,. .c,
+                   ..',;;;;;;;;;;;;;;''...      :l
+                                               .c.`,
+            `                         .:ccc;;cc;,;.
+                        'cc'            ;c.
+                       'c:.               'c,
+                     :cc,,,,,,,,,,,,,  ,c,  'c'
+                   .cc;,,,,,,,,,,,,,,. 'cc.  :c.
+                  .cc,,,,,,,,,,,,,,,,,  :l:. .c:
+                  :c:,,,,,,,,,,,,,,,cc. ,cc,  ;c.
+                 .cc,,,,,,,,,,,,,,,,;c: 'cc:. .c:
+                 'c:,,,,,,,,,,,,,,,,:c,  :l;.  cc
+                 ,cc,,,,,,,,,,,,,,,,:c.  ,lc   :l.
+                 ;c;,,,,,,,,,,,,,,,;l'   .l:.  'c,
+                .cc,,,,,,,,,,,,,,:cl,     cc'  .c:
+                .cc:,...:;...,:ccc:.      cc.   :c
+                ;ccc'                     :c;   'c:
+               .cc:'                      'cc.  .c:
+               :c:                        .cc:. .cc
+              'cc.  ':c,                   cc;c..c:
+              cc,,,,,,cc.                  cc,c,.c,
+             ,c:,,,,,,;c:                 .cc,c: l;
+             c:,,,,,,,,:c,                cc,,cc c;
+            .cc,,,,,,,,,:c:'.........',;cc;,,,;c.:c
+            'l;,,,,,,,,,,,ccccccccccccc;,,,,,,:c.c;
+            .cc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,cc :;
+             :c,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,:l:c:
+             .cc,,,,,,,,,,,,,,,,,,,,,,,,,,,;cc:,c.
+              .;cc::;;;,,,,,,,,,,,,,;;;::cc:;. .c,
+                 .',;;;;;;;;;;;;;;;;,,'....     :l
+                                               .c.`,
+            `                          ;cccc;:cc:,;.
+                         cc.            cc
+                        cc.               ,c,
+                      :cc,,,,,,,,,,,,,, .cc. .c;
+                    .cc;,,,,,,,,,,,,,,,. 'cc. 'c,
+                   .cc,,,,,,,,,,,,,,,,,,  :l:. ;c.
+                  .cc,,,,,,,,,,,,,,,,,:c. ,cc, .c:
+                  :c:,,,,,,,,,,,,,,,,,:c: 'cc:. :c.
+                 .cc,,,,,,,,,,,,,,,,,,:c,  :l;. 'c;
+                 'c:,,,,,,,,,,,,,,,,,,cc.  ,lc   cc
+                 ,cc,,,,,,,,,,,,,,,,,:c'   .l:.  :l.
+                 ;c:,,,,,,,,,,,,,,,,:cc.    cc'  'c,
+                 'cc,....:,...',;cccc:'     cc.  .c:
+                 ;cc:.                      cc.   cc
+                .cc:.                       :c;   :c.
+                ;cc                         'cc.  'c:
+               .cc,   ,c;                   .cc:. .cc
+               cc,,,,,,;c;                   cc:c..c:
+              ,c:,,,,,,,cc.                  cc'c,.c,
+              cc,,,,,,,,;c:                 .cc,c: l;
+             .cc,,,,,,,,,;c;.             .;c:,,cc c;
+             :l;,,,,,,,,,,;ccc;,......,:ccc;,,,;c.:c
+             cc,,,,,,,,,,,,,,;cccccccc:;,,,,,,,:c.c;
+            .cc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,cc :;
+             ;c:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,:c;c:
+             .cc:,,,,,,,,,,,,,,,,,,,,,,,,,,,:cc;.c.
+              .:cc:::;;,,,,,,,,,,,,,,;;;::cc:;. .c,
+                  .',;;;;;;;;;;;;;;;;;,,'...    .c;
+                                                ,c`
+          ];
+          
+          term.writeln('\x1b[1;35m🦜 PARTY PARROT TIME! 🦜\x1b[0m');
+          term.writeln('');
+          
+          let frameIndex = 0;
+          let animationInterval: NodeJS.Timeout;
+          let stopAnimation = false;
+          
+          // Save cursor position
+          term.write('\x1b[s');
+          
+          const animate = () => {
+            if (stopAnimation) {
+              clearInterval(animationInterval);
+              term.write('\x1b[u'); // Restore cursor position
+              term.writeln('');
+              term.writeln('\x1b[1;33mParty stopped! 🎉\x1b[0m');
+              term.writeln('');
+              term.write('\x1b[1;35m$ \x1b[0m');
+              isProcessingCommand = false;
+              return;
+            }
+            
+            // Clear previous frame
+            term.write('\x1b[u'); // Restore cursor position
+            
+            // Draw current frame with rainbow colors
+            const lines = parrotFrames[frameIndex].split('\n');
+            const colors = [31, 33, 32, 36, 34, 35]; // Red, Yellow, Green, Cyan, Blue, Magenta
+            
+            lines.forEach((line, i) => {
+              const colorCode = colors[i % colors.length];
+              term.writeln(`\x1b[1;${colorCode}m${line}\x1b[0m`);
+            });
+            
+            frameIndex = (frameIndex + 1) % parrotFrames.length;
+          };
+          
+          // Start animation
+          animationInterval = setInterval(animate, 150);
+          
+          // Stop animation on any key press
+          const stopHandler = term.onData(() => {
+            stopAnimation = true;
+            stopHandler.dispose();
+          });
+          
+          return; // Don't write prompt until animation stops
+        
         default:
           if (command) {
             term.writeln(`\x1b[1;31mCommand not found:\x1b[0m ${command}`);
@@ -207,7 +540,7 @@ export default function TerminalComponent() {
           }
       }
       
-      term.write('\x1b[1;36m$ \x1b[0m');
+      term.write('\x1b[1;35m$ \x1b[0m');
       isProcessingCommand = false;
     };
 
@@ -235,7 +568,7 @@ export default function TerminalComponent() {
           if (historyIndex > 0) {
             // Clear current line
             term.write('\r\x1b[K');
-            term.write('\x1b[1;36m$ \x1b[0m');
+            term.write('\x1b[1;35m$ \x1b[0m');
             historyIndex--;
             currentLine = commandHistory[historyIndex];
             term.write(currentLine);
@@ -243,13 +576,13 @@ export default function TerminalComponent() {
         } else if (data === '\x1b[B') { // Down arrow
           if (historyIndex < commandHistory.length - 1) {
             term.write('\r\x1b[K');
-            term.write('\x1b[1;36m$ \x1b[0m');
+            term.write('\x1b[1;35m$ \x1b[0m');
             historyIndex++;
             currentLine = commandHistory[historyIndex];
             term.write(currentLine);
           } else if (historyIndex === commandHistory.length - 1) {
             term.write('\r\x1b[K');
-            term.write('\x1b[1;36m$ \x1b[0m');
+            term.write('\x1b[1;35m$ \x1b[0m');
             historyIndex = commandHistory.length;
             currentLine = '';
           }
@@ -258,10 +591,10 @@ export default function TerminalComponent() {
         term.write('^C');
         term.writeln('');
         currentLine = '';
-        term.write('\x1b[1;36m$ \x1b[0m');
+        term.write('\x1b[1;35m$ \x1b[0m');
       } else if (code === 12) { // Ctrl+L (clear)
         term.clear();
-        term.write('\x1b[1;36m$ \x1b[0m');
+        term.write('\x1b[1;35m$ \x1b[0m');
         term.write(currentLine);
       } else if (code < 32) { // Other control characters
         // Ignore

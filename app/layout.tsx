@@ -28,9 +28,6 @@ export default function RootLayout({
         <header>
           <nav className="container">
             <a href="/" className="logo">Breakeven LLC</a>
-            <div className="flex items-center gap-6">
-              <a href="#contact" className="hover:text-accent transition-colors">Contact</a>
-            </div>
           </nav>
         </header>
         {children}

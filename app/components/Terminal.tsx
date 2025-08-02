@@ -9,8 +9,6 @@ export default function TerminalComponent() {
   const terminalRef = useRef<HTMLDivElement>(null);
   const xtermRef = useRef<Terminal | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const visualizerInterval = useRef<NodeJS.Timeout | null>(null);
-  const progressInterval = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!terminalRef.current || xtermRef.current) return;
@@ -85,7 +83,7 @@ export default function TerminalComponent() {
     term.writeln('\x1b[1;32mPodcast-as-a-Service Terminal\x1b[0m');
     term.writeln('');
     term.writeln('\x1b[33mType "help" to see available commands\x1b[0m');
-    term.writeln('\x1b[35mTry "podcast play" to stream MLG #22: Vibe-Driven Development 🎧\x1b[0m');
+    term.writeln('\x1b[35mTry "podcast" to play the audio 🎧\x1b[0m');
     term.writeln('');
     term.write('\x1b[1;36m$ \x1b[0m');
 
@@ -96,53 +94,6 @@ export default function TerminalComponent() {
     let currentLine = '';
     let commandHistory: string[] = [];
     let historyIndex = -1;
-    let isPodcastPlaying = false;
-    let podcastProgress = 0;
-    let podcastDuration = 0;
-    
-    // Podcast data
-    const podcasts = {
-      mlg: {
-        title: 'MLG #22: Vibe-Driven Development',
-        url: 'https://ocdevel.com/files/mlg/machine-learning-guide-22.mp3',
-        host: 'OCDevel',
-        duration: '45:32'
-      },
-      sniped: {
-        title: 'Sniped Podcast',
-        url: 'https://sniped.com',
-        host: 'Various',
-        duration: 'N/A'
-      }
-    };
-    
-    // ASCII Visualizer Frames
-    const visualizerFrames = [
-      '▁▂▃▄▅▆▇█▇▆▅▄▃▂▁',
-      '▂▃▄▅▆▇█▇▆▅▄▃▂▁▂',
-      '▃▄▅▆▇█▇▆▅▄▃▂▁▂▃',
-      '▄▅▆▇█▇▆▅▄▃▂▁▂▃▄',
-      '▅▆▇█▇▆▅▄▃▂▁▂▃▄▅',
-      '▆▇█▇▆▅▄▃▂▁▂▃▄▅▆',
-      '▇█▇▆▅▄▃▂▁▂▃▄▅▆▇',
-      '█▇▆▅▄▃▂▁▂▃▄▅▆▇█'
-    ];
-    let visualizerFrame = 0;
-    
-    // Format time helper
-    const formatTime = (seconds: number) => {
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    };
-    
-    // ASCII Progress Bar
-    const generateProgressBar = (current: number, total: number, width: number = 30) => {
-      const percentage = total > 0 ? current / total : 0;
-      const filled = Math.floor(percentage * width);
-      const empty = width - filled;
-      return `[${'>'.repeat(filled)}${'-'.repeat(empty)}] ${Math.floor(percentage * 100)}%`;
-    };
 
     // Command processor
     const processCommand = (cmd: string) => {
@@ -152,17 +103,11 @@ export default function TerminalComponent() {
       switch (command) {
         case 'help':
           term.writeln('\x1b[1;33mAvailable commands:\x1b[0m');
-          term.writeln('  \x1b[36mhelp\x1b[0m     - Show this help message');
-          term.writeln('  \x1b[36mclear\x1b[0m    - Clear the terminal');
-          term.writeln('  \x1b[36mdate\x1b[0m     - Show current date and time');
-          term.writeln('  \x1b[36mecho\x1b[0m     - Echo back your message');
-          term.writeln('');
-          term.writeln('  \x1b[35m🎙️  Podcast Commands:\x1b[0m');
-          term.writeln('  \x1b[36mpodcast list\x1b[0m   - List available podcasts');
-          term.writeln('  \x1b[36mpodcast play\x1b[0m   - Play the MLG vibe coding episode');
-          term.writeln('  \x1b[36mpodcast pause\x1b[0m  - Pause playback');
-          term.writeln('  \x1b[36mpodcast stop\x1b[0m   - Stop playback');
-          term.writeln('  \x1b[36mpodcast status\x1b[0m - Show playback status');
+          term.writeln('  \x1b[36mhelp\x1b[0m      - Show this help message');
+          term.writeln('  \x1b[36mclear\x1b[0m     - Clear the terminal');
+          term.writeln('  \x1b[36mdate\x1b[0m      - Show current date and time');
+          term.writeln('  \x1b[36mecho\x1b[0m      - Echo back your message');
+          term.writeln('  \x1b[36mpodcast\x1b[0m   - Play the podcast');
           break;
         
         case 'clear':
@@ -184,131 +129,15 @@ export default function TerminalComponent() {
           break;
         
         case 'podcast':
-          const subCmd = args[1]?.toLowerCase();
-          
-          switch (subCmd) {
-            case 'list':
-              term.writeln('\x1b[1;35m🎙️  Available Podcasts:\x1b[0m');
-              term.writeln('');
-              Object.entries(podcasts).forEach(([key, podcast]) => {
-                term.writeln(`  \x1b[36m${key}\x1b[0m - ${podcast.title}`);
-                term.writeln(`       Host: ${podcast.host} | Duration: ${podcast.duration}`);
-                term.writeln('');
-              });
-              break;
-              
-            case 'play':
-              if (!audioRef.current) {
-                audioRef.current = new Audio();
-                audioRef.current.addEventListener('loadedmetadata', () => {
-                  podcastDuration = audioRef.current!.duration;
-                });
-                audioRef.current.addEventListener('ended', () => {
-                  isPodcastPlaying = false;
-                  if (visualizerInterval.current) {
-                    clearInterval(visualizerInterval.current);
-                  }
-                  if (progressInterval.current) {
-                    clearInterval(progressInterval.current);
-                  }
-                  term.writeln('\n\x1b[1;32m✓ Podcast finished\x1b[0m');
-                  term.write('\x1b[1;36m$ \x1b[0m');
-                });
-              }
-              
-              term.writeln('\x1b[1;33m⏳ Loading MLG #22: Vibe-Driven Development...\x1b[0m');
-              term.writeln('');
-              
-              // Simulate wget-style download
-              let downloadProgress = 0;
-              const downloadInterval = setInterval(() => {
-                term.write(`\r\x1b[K\x1b[1;32mDownloading:\x1b[0m ${generateProgressBar(downloadProgress, 100, 40)}`);
-                downloadProgress += Math.random() * 15;
-                if (downloadProgress >= 100) {
-                  clearInterval(downloadInterval);
-                  term.writeln(`\r\x1b[K\x1b[1;32mDownloading:\x1b[0m ${generateProgressBar(100, 100, 40)}`);
-                  term.writeln('\n\x1b[1;32m✓ Download complete\x1b[0m');
-                  term.writeln('');
-                  
-                  // Start playback
-                  audioRef.current!.src = podcasts.mlg.url;
-                  audioRef.current!.play().then(() => {
-                    isPodcastPlaying = true;
-                    term.writeln('\x1b[1;35m▶️  Now Playing: MLG #22: Vibe-Driven Development\x1b[0m');
-                    term.writeln('');
-                    
-                    // Start visualizer
-                    visualizerInterval.current = setInterval(() => {
-                      if (isPodcastPlaying && audioRef.current) {
-                        const time = formatTime(audioRef.current.currentTime);
-                        const duration = formatTime(podcastDuration);
-                        const progress = generateProgressBar(audioRef.current.currentTime, podcastDuration);
-                        const viz = visualizerFrames[visualizerFrame % visualizerFrames.length];
-                        
-                        term.write(`\r\x1b[K\x1b[1;32m♪\x1b[0m ${viz} \x1b[1;36m[${time} / ${duration}]\x1b[0m ${progress}`);
-                        visualizerFrame++;
-                      }
-                    }, 100);
-                  }).catch(err => {
-                    term.writeln('\x1b[1;31m✗ Error loading podcast\x1b[0m');
-                    console.error(err);
-                  });
-                }
-              }, 100);
-              break;
-              
-            case 'pause':
-              if (audioRef.current && isPodcastPlaying) {
-                audioRef.current.pause();
-                isPodcastPlaying = false;
-                if (visualizerInterval.current) {
-                  clearInterval(visualizerInterval.current);
-                }
-                term.writeln('\n\x1b[1;33m⏸  Paused\x1b[0m');
-              } else {
-                term.writeln('\x1b[1;31mNo podcast playing\x1b[0m');
-              }
-              break;
-              
-            case 'resume':
-              if (audioRef.current && !isPodcastPlaying && audioRef.current.src) {
-                audioRef.current.play();
-                isPodcastPlaying = true;
-                term.writeln('\x1b[1;32m▶️  Resumed\x1b[0m');
-              }
-              break;
-              
-            case 'stop':
-              if (audioRef.current) {
-                audioRef.current.pause();
-                audioRef.current.currentTime = 0;
-                isPodcastPlaying = false;
-                if (visualizerInterval.current) {
-                  clearInterval(visualizerInterval.current);
-                }
-                if (progressInterval.current) {
-                  clearInterval(progressInterval.current);
-                }
-                term.writeln('\n\x1b[1;31m⏹  Stopped\x1b[0m');
-              }
-              break;
-              
-            case 'status':
-              if (audioRef.current && audioRef.current.src) {
-                const status = isPodcastPlaying ? 'Playing' : 'Paused';
-                const time = formatTime(audioRef.current.currentTime);
-                const duration = formatTime(podcastDuration);
-                term.writeln(`\x1b[1;35mStatus:\x1b[0m ${status}`);
-                term.writeln(`\x1b[1;35mProgress:\x1b[0m ${time} / ${duration}`);
-              } else {
-                term.writeln('\x1b[1;31mNo podcast loaded\x1b[0m');
-              }
-              break;
-              
-            default:
-              term.writeln('\x1b[1;31mUnknown podcast command\x1b[0m');
-              term.writeln('Usage: podcast [list|play|pause|stop|status]');
+          if (!audioRef.current) {
+            audioRef.current = new Audio('/podcast.m4a');
           }
+          
+          term.writeln('\x1b[1;35m🎧 Playing podcast...\x1b[0m');
+          audioRef.current.play().catch(err => {
+            term.writeln('\x1b[1;31mError: Could not play podcast\x1b[0m');
+            console.error(err);
+          });
           break;
         
         default:
@@ -393,12 +222,6 @@ export default function TerminalComponent() {
 
       return () => {
         window.removeEventListener('resize', handleResize);
-        if (visualizerInterval.current) {
-          clearInterval(visualizerInterval.current);
-        }
-        if (progressInterval.current) {
-          clearInterval(progressInterval.current);
-        }
         if (audioRef.current) {
           audioRef.current.pause();
           audioRef.current = null;
@@ -414,7 +237,7 @@ export default function TerminalComponent() {
   }, []);
 
   return (
-    <div className="terminal-container w-full h-[500px]" onClick={() => xtermRef.current?.focus()}>
+    <div className="terminal-container w-full" onClick={() => xtermRef.current?.focus()}>
       <div className="terminal-header">
         <div className="flex gap-2">
           <div className="terminal-button close"></div>
@@ -425,7 +248,7 @@ export default function TerminalComponent() {
           breakeven@llc:~$ business-terminal
         </div>
       </div>
-      <div ref={terminalRef} className="h-[calc(100%-40px)] bg-black/90 p-4 cursor-text" />
+      <div ref={terminalRef} className="h-[500px] bg-black/90 p-4 cursor-text" />
     </div>
   );
 }

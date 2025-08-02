@@ -313,7 +313,7 @@ export default function TerminalComponent() {
           breakeven@llc:~$ business-terminal
         </div>
       </div>
-      <div ref={terminalRef} className="h-[500px] bg-black/90 p-4 cursor-text" />
+      <div ref={terminalRef} className="h-[500px] bg-black cursor-text" />
     </div>
   );
 }

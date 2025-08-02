@@ -147,7 +147,6 @@ export default function TerminalComponent() {
           term.writeln('  • Technology Implementation');
           term.writeln('  • Innovation Leadership');
           term.writeln('');
-          term.writeln('\x1b[90mVisit our blog for insights and updates.\x1b[0m');
           break;
         
         case 'status':

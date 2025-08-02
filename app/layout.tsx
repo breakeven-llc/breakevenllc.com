@@ -28,11 +28,21 @@ export default function RootLayout({
         <header>
           <nav className="container">
             <a href="/" className="logo">Breakeven LLC</a>
+            <div className="flex items-center gap-6">
+              <a href="/blog" className="hover:text-primary transition-colors">Blog</a>
+              <a href="#contact" className="hover:text-accent transition-colors">Contact</a>
+            </div>
           </nav>
         </header>
         {children}
         <footer className="container">
-          <p>&copy; {new Date().getFullYear()} Breakeven LLC. All rights reserved.</p>
+          <div className="text-center space-y-4">
+            <div className="flex justify-center gap-2 text-sm">
+              <span className="text-primary animate-pulse-glow">●</span>
+              <span className="text-gray-400">Systems Operational</span>
+            </div>
+            <p className="text-gray-500">&copy; {new Date().getFullYear()} Breakeven LLC. All rights reserved.</p>
+          </div>
         </footer>
       </body>
     </html>

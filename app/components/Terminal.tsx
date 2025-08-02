@@ -76,14 +76,15 @@ export default function TerminalComponent() {
       });
 
     // Welcome message
-    term.writeln('\x1b[1;35m╔════════════════════════════════════════════════════════════════════╗\x1b[0m');
-    term.writeln('\x1b[1;35m║\x1b[0m  \x1b[1;36m💼 BREAKEVEN LLC TERMINAL v1.0 💼\x1b[0m                                \x1b[1;35m║\x1b[0m');
-    term.writeln('\x1b[1;35m╚════════════════════════════════════════════════════════════════════╝\x1b[0m');
+    term.writeln('\x1b[1;36m╔════════════════════════════════════════════════════════════════════╗\x1b[0m');
+    term.writeln('\x1b[1;36m║\x1b[0m  \x1b[1;37mBREAKEVEN LLC TERMINAL\x1b[0m \x1b[1;90mv1.0.0\x1b[0m                                    \x1b[1;36m║\x1b[0m');
+    term.writeln('\x1b[1;36m╚════════════════════════════════════════════════════════════════════╝\x1b[0m');
     term.writeln('');
-    term.writeln('\x1b[1;32mPodcast-as-a-Service Terminal\x1b[0m');
+    term.writeln('  \x1b[1;32m●\x1b[0m \x1b[1;37mPodcast-as-a-Service Terminal\x1b[0m');
+    term.writeln('  \x1b[1;33m●\x1b[0m \x1b[90mProfessional Solutions Platform\x1b[0m');
+    term.writeln('  \x1b[1;36m●\x1b[0m \x1b[90mType \x1b[1;36mhelp\x1b[0m\x1b[90m for available commands\x1b[0m');
     term.writeln('');
-    term.writeln('\x1b[33mType "help" to see available commands\x1b[0m');
-    term.writeln('\x1b[35mTry "podcast" to play the audio 🎧\x1b[0m');
+    term.writeln('\x1b[90m────────────────────────────────────────────────────────────────────\x1b[0m');
     term.writeln('');
     term.write('\x1b[1;36m$ \x1b[0m');
 
@@ -94,20 +95,32 @@ export default function TerminalComponent() {
     let currentLine = '';
     let commandHistory: string[] = [];
     let historyIndex = -1;
+    let isProcessingCommand = false;
 
     // Command processor
     const processCommand = (cmd: string) => {
+      if (isProcessingCommand) return;
+      isProcessingCommand = true;
       const args = cmd.split(' ');
       const command = args[0]?.toLowerCase();
 
       switch (command) {
         case 'help':
           term.writeln('\x1b[1;33mAvailable commands:\x1b[0m');
+          term.writeln('');
           term.writeln('  \x1b[36mhelp\x1b[0m      - Show this help message');
           term.writeln('  \x1b[36mclear\x1b[0m     - Clear the terminal');
           term.writeln('  \x1b[36mdate\x1b[0m      - Show current date and time');
           term.writeln('  \x1b[36mecho\x1b[0m      - Echo back your message');
-          term.writeln('  \x1b[36mpodcast\x1b[0m   - Play the podcast');
+          term.writeln('  \x1b[36mabout\x1b[0m     - Learn about Breakeven LLC');
+          term.writeln('  \x1b[36mstatus\x1b[0m    - Check system status');
+          term.writeln('  \x1b[36mpodcast\x1b[0m   - Play/pause/stop the podcast');
+          term.writeln('             \x1b[90mUsage: podcast [play|pause|stop]\x1b[0m');
+          term.writeln('');
+          term.writeln('\x1b[90mKeyboard shortcuts:\x1b[0m');
+          term.writeln('  \x1b[90mCtrl+C - Cancel current input\x1b[0m');
+          term.writeln('  \x1b[90mCtrl+L - Clear screen\x1b[0m');
+          term.writeln('  \x1b[90m↑/↓    - Navigate command history\x1b[0m');
           break;
         
         case 'clear':
@@ -124,20 +137,68 @@ export default function TerminalComponent() {
           }
           break;
         
+        case 'about':
+          term.writeln('\x1b[1;36mBreakeven LLC\x1b[0m');
+          term.writeln('\x1b[90m─────────────────────────────────────────\x1b[0m');
+          term.writeln('Professional solutions for modern business challenges.');
+          term.writeln('');
+          term.writeln('\x1b[1;33mServices:\x1b[0m');
+          term.writeln('  • Business Strategy Consulting');
+          term.writeln('  • Technology Implementation');
+          term.writeln('  • Innovation Leadership');
+          term.writeln('');
+          term.writeln('\x1b[90mVisit our blog for insights and updates.\x1b[0m');
+          break;
+        
+        case 'status':
+          term.writeln('\x1b[1;32m● System Status: Operational\x1b[0m');
+          term.writeln(`\x1b[90mUptime: ${Math.floor(Math.random() * 999) + 1} days\x1b[0m`);
+          term.writeln(`\x1b[90mLoad: ${(Math.random() * 2).toFixed(2)}\x1b[0m`);
+          term.writeln(`\x1b[90mMemory: ${Math.floor(Math.random() * 50 + 50)}% free\x1b[0m`);
+          break;
+        
         case '':
           // Empty command, do nothing
           break;
         
         case 'podcast':
-          if (!audioRef.current) {
-            audioRef.current = new Audio('/podcast.m4a');
-          }
+          const subCommand = args[1]?.toLowerCase();
           
-          term.writeln('\x1b[1;35m🎧 Playing podcast...\x1b[0m');
-          audioRef.current.play().catch(err => {
-            term.writeln('\x1b[1;31mError: Could not play podcast\x1b[0m');
-            console.error(err);
-          });
+          if (subCommand === 'stop') {
+            if (audioRef.current) {
+              audioRef.current.pause();
+              audioRef.current.currentTime = 0;
+              term.writeln('\x1b[1;33m⏹ Podcast stopped\x1b[0m');
+            } else {
+              term.writeln('\x1b[1;31mNo podcast is playing\x1b[0m');
+            }
+          } else if (subCommand === 'pause') {
+            if (audioRef.current && !audioRef.current.paused) {
+              audioRef.current.pause();
+              term.writeln('\x1b[1;33m⏸ Podcast paused\x1b[0m');
+            } else {
+              term.writeln('\x1b[1;31mNo podcast is playing\x1b[0m');
+            }
+          } else if (subCommand === 'play' || !subCommand) {
+            if (!audioRef.current) {
+              audioRef.current = new Audio('/podcast.m4a');
+              audioRef.current.volume = 0.7;
+            }
+            
+            if (audioRef.current.paused) {
+              term.writeln('\x1b[1;35m🎧 Playing podcast...\x1b[0m');
+              term.writeln('\x1b[1;90mCommands: podcast pause | podcast stop\x1b[0m');
+              audioRef.current.play().catch(err => {
+                term.writeln('\x1b[1;31mError: Could not play podcast\x1b[0m');
+                console.error(err);
+              });
+            } else {
+              term.writeln('\x1b[1;33mPodcast is already playing\x1b[0m');
+            }
+          } else {
+            term.writeln(`\x1b[1;31mUnknown podcast command: ${subCommand}\x1b[0m`);
+            term.writeln('\x1b[1;90mUsage: podcast [play|pause|stop]\x1b[0m');
+          }
           break;
         
         default:
@@ -148,9 +209,12 @@ export default function TerminalComponent() {
       }
       
       term.write('\x1b[1;36m$ \x1b[0m');
+      isProcessingCommand = false;
     };
 
     term.onData((data) => {
+      if (isProcessingCommand) return;
+      
       const code = data.charCodeAt(0);
       
       // Handle special keys
@@ -171,33 +235,35 @@ export default function TerminalComponent() {
         if (data === '\x1b[A') { // Up arrow
           if (historyIndex > 0) {
             // Clear current line
-            for (let i = 0; i < currentLine.length; i++) {
-              term.write('\b \b');
-            }
+            term.write('\r\x1b[K');
+            term.write('\x1b[1;36m$ \x1b[0m');
             historyIndex--;
             currentLine = commandHistory[historyIndex];
             term.write(currentLine);
           }
         } else if (data === '\x1b[B') { // Down arrow
           if (historyIndex < commandHistory.length - 1) {
-            for (let i = 0; i < currentLine.length; i++) {
-              term.write('\b \b');
-            }
+            term.write('\r\x1b[K');
+            term.write('\x1b[1;36m$ \x1b[0m');
             historyIndex++;
             currentLine = commandHistory[historyIndex];
             term.write(currentLine);
           } else if (historyIndex === commandHistory.length - 1) {
-            for (let i = 0; i < currentLine.length; i++) {
-              term.write('\b \b');
-            }
+            term.write('\r\x1b[K');
+            term.write('\x1b[1;36m$ \x1b[0m');
             historyIndex = commandHistory.length;
             currentLine = '';
           }
         }
       } else if (code === 3) { // Ctrl+C
-        term.writeln('^C');
+        term.write('^C');
+        term.writeln('');
         currentLine = '';
         term.write('\x1b[1;36m$ \x1b[0m');
+      } else if (code === 12) { // Ctrl+L (clear)
+        term.clear();
+        term.write('\x1b[1;36m$ \x1b[0m');
+        term.write(currentLine);
       } else if (code < 32) { // Other control characters
         // Ignore
       } else { // Regular characters

@@ -22,27 +22,27 @@ export default function TerminalComponent() {
 
       const term = new Terminal({
       theme: {
-        background: '#0a0011',
-        foreground: '#0FFF50',
-        cursor: '#0FFF50',
-        cursorAccent: '#0a0011',
-        selectionBackground: 'rgba(15, 255, 80, 0.3)',
+        background: '#1a1a1a',
+        foreground: '#e4e4e7',
+        cursor: '#3b82f6',
+        cursorAccent: '#1a1a1a',
+        selectionBackground: 'rgba(59, 130, 246, 0.3)',
         black: '#000000',
-        red: '#FF10F0',
-        green: '#0FFF50',
-        yellow: '#FFFF00',
-        blue: '#00F0FF',
-        magenta: '#9D00FF',
-        cyan: '#00F0FF',
-        white: '#FFFFFF',
-        brightBlack: '#666666',
-        brightRed: '#FF6B00',
-        brightGreen: '#0FFF50',
-        brightYellow: '#FFFF00',
-        brightBlue: '#00F0FF',
-        brightMagenta: '#FF10F0',
-        brightCyan: '#00F0FF',
-        brightWhite: '#FFFFFF'
+        red: '#ef4444',
+        green: '#10b981',
+        yellow: '#f59e0b',
+        blue: '#3b82f6',
+        magenta: '#8b5cf6',
+        cyan: '#06b6d4',
+        white: '#e4e4e7',
+        brightBlack: '#6b7280',
+        brightRed: '#f87171',
+        brightGreen: '#34d399',
+        brightYellow: '#fbbf24',
+        brightBlue: '#60a5fa',
+        brightMagenta: '#a78bfa',
+        brightCyan: '#22d3ee',
+        brightWhite: '#f3f4f6'
       },
       fontFamily: 'monospace',
       fontSize: 14,
@@ -76,7 +76,7 @@ export default function TerminalComponent() {
 
     // Welcome message
     term.writeln('\x1b[1;35m╔════════════════════════════════════════════════════════════════════╗\x1b[0m');
-    term.writeln('\x1b[1;35m║\x1b[0m  \x1b[1;36m🤖 BODAL.DEV TERMINAL v1.0 🤖\x1b[0m                                     \x1b[1;35m║\x1b[0m');
+    term.writeln('\x1b[1;35m║\x1b[0m  \x1b[1;36m💼 BREAKEVEN LLC TERMINAL v1.0 💼\x1b[0m                                \x1b[1;35m║\x1b[0m');
     term.writeln('\x1b[1;35m╚════════════════════════════════════════════════════════════════════╝\x1b[0m');
     term.writeln('');
     term.writeln('\x1b[1;32mComing soon to a terminal near you...\x1b[0m');
@@ -226,7 +226,7 @@ export default function TerminalComponent() {
           <div className="terminal-button maximize"></div>
         </div>
         <div className="flex-1 text-center text-sm text-gray-400">
-          bodal@dev:~$ agentic-terminal
+          breakeven@llc:~$ business-terminal
         </div>
       </div>
       <div ref={terminalRef} className="h-[calc(100%-40px)] bg-black/90 p-4 cursor-text" />
